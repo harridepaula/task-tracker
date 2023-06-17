@@ -1,0 +1,44 @@
+body {
+    height: 100vh;
+    background: url(img/bg-image.jpeg) no-repeat center center / cover;
+    backdrop-filter: blur(2px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+#add-task-container {
+    width: 400px;
+    background: #fff;
+    border-radius:20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+input {
+    flex: 5;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 75%;
+}
+
+#add-task {
+    flex: 1;
+    transition: .3s;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background: #fff;
+    color: #19c986;
+    border: 2px solid #19c986;
+}
+
+#add-task:hover {
+    background: #19c986;
+    color: #fff;
+}
