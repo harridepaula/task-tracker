@@ -15,6 +15,7 @@ body {
     border-radius:20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-bottom: 20px;
 }
 
 input {
@@ -41,4 +42,64 @@ input {
 #add-task:hover {
     background: #19c986;
     color: #fff;
+}
+
+
+/* Styling for to-do list tasks */
+
+.task {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task li {
+    list-style: none;
+    flex: 4;
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 75%;
+    margin: 0 10px;
+}
+
+.task button {
+    flex: 1;
+    transition: .3s;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.task .checkTask {
+    background: #19c986;
+    color: #fff;
+    border: 2px solid #19c986;
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+
+.task .checkTask:hover {
+    background: #fff;
+    color: #19c986;
+}
+
+.task .deleteTask {
+    background: #b61717;
+    color: #fff;
+    border: 2px solid #b61717;
+    font-size: 1.4rem;
+}
+
+.task .deleteTask:hover {
+    background: #fff;
+    color: #b61717;
 }
