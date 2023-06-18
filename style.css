@@ -1,3 +1,30 @@
+/* navbar */
+
+nav {
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover {
+    background-color: #555;
+  }
+  
+  nav a.active {
+    background-color: #555;
+  }
+
+
+  /* general styles */
+
 body {
     height: 100vh;
     background: url(img/bg-image.jpeg) no-repeat center center / cover;
@@ -112,4 +139,8 @@ input {
 .task .deleteTask:hover {
     background: #fff;
     color: #b61717;
+}
+
+.completed {
+    order: 1; 
 }

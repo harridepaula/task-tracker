@@ -9,37 +9,60 @@ const inputTask = document.querySelector('#input-task');
 // event listener for add task button
 
 addTask.addEventListener('click', function() { 
-
     // create div for task
-    const task = document.createElement('div');
-    task.classList.add('task');
+    const newTask = document.createElement('div');
+    newTask.classList.add('task');
 
     // create li for task
     const li = document.createElement('li');
     li.innerText = `${inputTask.value}`;
-    task.appendChild(li);
+    newTask.appendChild(li);
 
     // create check button for task
     const checkBtn = document.createElement('button');
     checkBtn.innerHTML = '<i class="fas fa-check"></i>';
     checkBtn.classList.add('checkTask');
-    task.appendChild(checkBtn);
+    newTask.appendChild(checkBtn);
 
     // create delete button for task
     const deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
     deleteBtn.classList.add('deleteTask');
-    task.appendChild(deleteBtn);
+    newTask.appendChild(deleteBtn);
 
     // alert if no task entered in input field
     if(inputTask.value === '') {
         alert('Please enter a task');
     } else {
-        taskContainer.appendChild(task);
+        taskContainer.appendChild(newTask);
     }
 
     // clear input field
     inputTask.value = '';
+
+    // check task event listener
+    checkBtn.addEventListener('click', function() {
+        // apply line-through decoration
+        newTask.classList.add('completed');
+
+        // move completed task to "Completed tasks" container
+        completedTasksContainer.appendChild(newTask);
+
+        // move completed task to "Completed tasks" container
+        completedTasksContainer.appendChild(newTask);
+
+        // disable the check button
+        checkBtn.disabled = true;
+    });
+
+
+    // event listener for delete button using event delegation
+    deleteBtn.addEventListener('click', function(e) {
+        let task = e.target.closest('.task');
+        if (task) {
+            task.remove();
+        }
+    });
 
 });
 
