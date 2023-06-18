@@ -3,36 +3,45 @@
 // variables
 
 const addTask = document.querySelector('#add-task');
-const taskContainer = document.querySelector('.task-container');
+const taskContainer = document.querySelector('#task-container');
 const inputTask = document.querySelector('#input-task');
 
-// event listeners
+// event listener for add task button
 
-const task = document.createElement('div');
-task.classList.add('task');
+addTask.addEventListener('click', function() { 
 
-const li = document.createElement('li');
-li.innerText = `${inputTask.value}`;
-task.appendChild(li);
+    // create div for task
+    const task = document.createElement('div');
+    task.classList.add('task');
 
-const checkBtn = document.createElement('button');
-checkBtn.innerHTML = '<i class="fas fa-check"></i>';
-checkBtn.classList.add('check-btn');
-task.appendChild(checkBtn);
+    // create li for task
+    const li = document.createElement('li');
+    li.innerText = `${inputTask.value}`;
+    task.appendChild(li);
 
-const deleteBtn = document.createElement('button');
-deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-deleteBtn.classList.add('delete-btn');
-task.appendChild(deleteBtn);
+    // create check button for task
+    const checkBtn = document.createElement('button');
+    checkBtn.innerHTML = '<i class="fas fa-check"></i>';
+    checkBtn.classList.add('checkTask');
+    task.appendChild(checkBtn);
 
-// alert if no task entered in input field
- if(inputTask.value === '') {
-    alert('Please enter a task');
-} else {
-    taskContainer.appendChild(task);
-}
+    // create delete button for task
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    deleteBtn.classList.add('deleteTask');
+    task.appendChild(deleteBtn);
 
-inputTask.value = '';
+    // alert if no task entered in input field
+    if(inputTask.value === '') {
+        alert('Please enter a task');
+    } else {
+        taskContainer.appendChild(task);
+    }
+
+    // clear input field
+    inputTask.value = '';
+
+});
 
 
 // functions
