@@ -1,4 +1,4 @@
-// DOM elements
+// DOM elements variables
 const addTaskBtn = document.querySelector('#add-task');
 const taskContainer = document.querySelector('#task-container');
 const completedTasksContainer = document.querySelector('#completed-tasks-container');
@@ -29,15 +29,20 @@ function createTask(taskName) {
 
   // Function to toggle task completion
   function toggleTaskCompletion() {
+    // Toggle the completed class on the task
     task.classList.toggle('completed');
+    // Toggle the text decoration on the task name element
     taskNameElement.style.textDecoration = task.classList.contains('completed') ? 'line-through' : 'none';
+    // Toggle the check button icon
     checkBtn.classList.toggle('unchecked');
+    // Change the check button icon to check or times
     checkBtn.innerHTML = task.classList.contains('completed') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-check"></i>';
 
-
+    // Move the task to the completed tasks container if it is completed
     if (task.classList.contains('completed')) {
       completedTasksContainer.appendChild(task);
     } else {
+      // Move the task to the task container if it is not completed
       taskContainer.appendChild(task);
     }
   }
@@ -55,15 +60,33 @@ function createTask(taskName) {
   return task;
 }
 
-// Add task event listener
-addTaskBtn.addEventListener('click', function() {
-  const taskName = inputTask.value.trim();
+// Add task event listener for button click
+addTaskBtn.addEventListener('click', addTask);
 
-  if (taskName !== '') {
-    const task = createTask(taskName);
-    taskContainer.appendChild(task);
-    inputTask.value = '';
-  } else {
-    alert('Please enter a task');
+// Add task event listener for Enter key press
+inputTask.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    addTask();
   }
 });
+
+// Function to add a new task
+// The addTask function is called when the user clicks the Add Task button
+function addTask() {
+
+// Get the task name from the input field
+  const taskName = inputTask.value.trim();
+
+  // Check if the task name is not empty
+  if (taskName !== '') {
+    // Create a new task
+    const task = createTask(taskName);
+    // Add the task to the task container
+    taskContainer.appendChild(task);
+    // Clear the input field
+    inputTask.value = '';
+  } else {
+    // Alert the user to enter a task
+    alert('Please enter a task');
+  }
+}
