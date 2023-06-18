@@ -3,29 +3,30 @@
 nav {
     background-color: #333;
     padding: 10px;
-  }
+}
   
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 12px;
-    margin-right: 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  nav a:hover {
-    background-color: #555;
-  }
-  
-  nav a.active {
-    background-color: #555;
-  }
+nav a {
+color: #fff;
+text-decoration: none;
+padding: 8px 12px;
+margin-right: 10px;
+border-radius: 4px;
+transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+background-color: #555;
+}
+
+nav a.active {
+background-color: #555;
+}
 
 
   /* general styles */
 
 body {
+    margin: 0;
     height: 100vh;
     background: url(img/bg-image.jpeg) no-repeat center center / cover;
     backdrop-filter: blur(2px);
@@ -40,6 +41,11 @@ body {
     align-items: center;
     width: 80vw;
     margin: 0 auto;
+}
+
+#task-container {
+    height: 45vh;
+    overflow: auto;
 }
 
 #add-task-container {
@@ -80,6 +86,10 @@ input {
     color: #fff;
 }
 
+.hidden {
+    display: none;
+}
+
 
 /* Styling for to-do list tasks */
 
@@ -113,6 +123,7 @@ input {
     cursor: pointer;
     background: #fff;
     width: 45px;
+    height: 45px;
 }
 
 .task .checkTask {
@@ -129,6 +140,21 @@ input {
     color: #19c986;
 }
 
+.task .unchecked {
+    background: #fff;
+    color: #19c986;
+    border: 2px solid #19c986;
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+
+.task .unchecked:hover {
+    background: #19c986;
+    color: #fff;
+}
+
+
 .task .deleteTask {
     background: #b61717;
     color: #fff;
@@ -141,6 +167,31 @@ input {
     color: #b61717;
 }
 
-.completed {
-    order: 1; 
+.task .redoTask {
+    background: #ffc107;
+    color: #fff;
+    border: 2px solid #ffc107;
+    font-size: 1.4rem;
+  }
+
+#completed-tasks-container {
+    position: absolute;
+    top: 65vh;
+    width: 90vw;
+    height: 14em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    align-items: center;
+    border-radius: 5px;
+    padding: 20px 0;
+    margin: 40px 0;
+    overflow: auto;
+}
+
+#completed-tasks-container .task {
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0px;
 }

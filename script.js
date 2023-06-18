@@ -1,81 +1,69 @@
-// This code creates a new task by adding an inputted value to a list. It also adds a check button and a delete button. 
-
-// variables
-
-const addTask = document.querySelector('#add-task');
+// DOM elements
+const addTaskBtn = document.querySelector('#add-task');
 const taskContainer = document.querySelector('#task-container');
+const completedTasksContainer = document.querySelector('#completed-tasks-container');
 const inputTask = document.querySelector('#input-task');
 
-// event listener for add task button
+// Create a new task
+function createTask(taskName) {
+  // Create task container
+  const task = document.createElement('div');
+  task.classList.add('task');
 
-addTask.addEventListener('click', function() { 
-    // create div for task
-    const newTask = document.createElement('div');
-    newTask.classList.add('task');
+  // Create task name element
+  const taskNameElement = document.createElement('li');
+  taskNameElement.innerText = taskName;
+  task.appendChild(taskNameElement);
 
-    // create li for task
-    const li = document.createElement('li');
-    li.innerText = `${inputTask.value}`;
-    newTask.appendChild(li);
+  // Create check button
+  const checkBtn = document.createElement('button');
+  checkBtn.innerHTML = '<i class="fas fa-check"></i>';
+  checkBtn.classList.add('checkTask');
+  task.appendChild(checkBtn);
 
-    // create check button for task
-    const checkBtn = document.createElement('button');
-    checkBtn.innerHTML = '<i class="fas fa-check"></i>';
-    checkBtn.classList.add('checkTask');
-    newTask.appendChild(checkBtn);
+  // Create delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+  deleteBtn.classList.add('deleteTask');
+  task.appendChild(deleteBtn);
 
-    // create delete button for task
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-    deleteBtn.classList.add('deleteTask');
-    newTask.appendChild(deleteBtn);
+  // Function to toggle task completion
+  function toggleTaskCompletion() {
+    task.classList.toggle('completed');
+    taskNameElement.style.textDecoration = task.classList.contains('completed') ? 'line-through' : 'none';
+    checkBtn.classList.toggle('unchecked');
+    checkBtn.innerHTML = task.classList.contains('completed') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-check"></i>';
 
-    // alert if no task entered in input field
-    if(inputTask.value === '') {
-        alert('Please enter a task');
+
+    if (task.classList.contains('completed')) {
+      completedTasksContainer.appendChild(task);
     } else {
-        taskContainer.appendChild(newTask);
+      taskContainer.appendChild(task);
     }
+  }
 
-    // clear input field
+  // Add event listener to check button
+  checkBtn.addEventListener('click', function() {
+    toggleTaskCompletion();
+  });
+
+  // Add event listener to delete button
+  deleteBtn.addEventListener('click', function() {
+    task.remove();
+  });
+
+  return task;
+}
+
+// Add task event listener
+addTaskBtn.addEventListener('click', function() {
+  const taskName = inputTask.value.trim();
+
+  if (taskName !== '') {
+    const task = createTask(taskName);
+    taskContainer.appendChild(task);
     inputTask.value = '';
-
-    // check task event listener
-    checkBtn.addEventListener('click', function() {
-        // apply line-through decoration
-        newTask.classList.add('completed');
-
-        // move completed task to "Completed tasks" container
-        completedTasksContainer.appendChild(newTask);
-
-        // move completed task to "Completed tasks" container
-        completedTasksContainer.appendChild(newTask);
-
-        // disable the check button
-        checkBtn.disabled = true;
-    });
-
-
-    // event listener for delete button using event delegation
-    deleteBtn.addEventListener('click', function(e) {
-        let task = e.target.closest('.task');
-        if (task) {
-            task.remove();
-        }
-    });
-
+  } else {
+    alert('Please enter a task');
+  }
 });
-
-
-// functions
-
-// create a new task
-
-
-// check if input is empty
-
-// add task to task container
-
-// clear the input field
-
-// delete or check a task
